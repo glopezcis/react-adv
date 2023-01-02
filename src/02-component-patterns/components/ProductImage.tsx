@@ -1,10 +1,16 @@
-import { useContext } from 'react'
+import { CSSProperties, useContext } from 'react'
 
 import styles from '../styles/styles.module.css'
 import noImage from '../assets/no-image.jpg'
 import { ProductContext } from './ProductCard'
 
-export const ProductImage = ({ img = ''}) => {
+export interface Props {
+  img?: string;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export const ProductImage = ({ img, className, style }: Props) => {
 
   const { product } = useContext(ProductContext)
   let imgToShow: string
@@ -19,9 +25,10 @@ export const ProductImage = ({ img = ''}) => {
 
 	return (
 		<img
-			className={styles.productImg}
+			className={`${styles.productImg} ${className}`}
 			src={imgToShow}
 			alt='Product img'
+      style={ style }
 		/>
 	)
 }
